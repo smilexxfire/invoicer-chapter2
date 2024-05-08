@@ -36,6 +36,8 @@ jobs:
    - deploy:
        command: |
          if [ "${CIRCLE_BRANCH}" == "master" ]; then
+           echo "DOCKER_REPO: ${DOCKER_REPO}";
+           echo "CIRCLE_PROJECT_REPONAME: ${CIRCLE_PROJECT_REPONAME}";
            docker login -u ${DOCKER_USER} -p ${DOCKER_PASS};
            go install --ldflags '-extldflags "-static"' \
            github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME};
